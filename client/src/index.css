@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(210, 15%, 22%);
+  --muted: hsl(108, 27%, 90%);
+  --muted-foreground: hsl(215, 16%, 47%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(210, 15%, 22%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(210, 15%, 22%);
+  --border: hsl(108, 27%, 85%);
+  --input: hsl(214, 32%, 91%);
+  --primary: hsl(210, 15%, 22%);
+  --primary-foreground: hsl(210, 40%, 98%);
+  --secondary: hsl(108, 27%, 85%);
+  --secondary-foreground: hsl(210, 15%, 22%);
+  --accent: hsl(190, 22%, 42%);
+  --accent-foreground: hsl(210, 40%, 98%);
+  --destructive: hsl(0, 84%, 60%);
+  --destructive-foreground: hsl(210, 40%, 98%);
+  --ring: hsl(210, 15%, 22%);
+  --radius: 0.75rem;
+  
+  /* Smart Services Portal Color Palette */
+  --smart-primary: hsl(210, 15%, 22%);     /* #364958 - Dark Blue/Gray */
+  --smart-accent: hsl(190, 22%, 42%);      /* #55828B - Teal Blue */
+  --smart-secondary: hsl(150, 20%, 65%);   /* #87BBA2 - Light Green/Blue */
+  --smart-background: hsl(108, 27%, 85%);  /* #C9E4CA - Pale Green */
+}
+
+.dark {
+  --background: hsl(222, 84%, 5%);
+  --foreground: hsl(210, 40%, 98%);
+  --muted: hsl(217, 33%, 17%);
+  --muted-foreground: hsl(215, 20%, 65%);
+  --popover: hsl(222, 84%, 5%);
+  --popover-foreground: hsl(210, 40%, 98%);
+  --card: hsl(222, 84%, 5%);
+  --card-foreground: hsl(210, 40%, 98%);
+  --border: hsl(217, 33%, 17%);
+  --input: hsl(217, 33%, 17%);
+  --primary: hsl(210, 40%, 98%);
+  --primary-foreground: hsl(222, 84%, 5%);
+  --secondary: hsl(217, 33%, 17%);
+  --secondary-foreground: hsl(210, 40%, 98%);
+  --accent: hsl(217, 33%, 17%);
+  --accent-foreground: hsl(210, 40%, 98%);
+  --destructive: hsl(0, 63%, 31%);
+  --destructive-foreground: hsl(210, 40%, 98%);
+  --ring: hsl(212, 12%, 84%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+}
+
+/* Custom utility classes for the Smart Services theme */
+.smart-gradient {
+  background: linear-gradient(135deg, var(--smart-background) 0%, var(--smart-secondary) 100%);
+}
+
+.smart-shadow {
+  box-shadow: 0 4px 6px -1px rgba(54, 73, 88, 0.1), 0 2px 4px -1px rgba(54, 73, 88, 0.06);
+}
+
+.smart-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.page-transition {
+  animation: fadeInUp 0.5s ease-out;
+}
+
+/* Page transition animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Loading spinner animation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Chat message animations */
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.message-user {
+  animation: slideInFromRight 0.3s ease-out;
+}
+
+.message-bot {
+  animation: slideInFromLeft 0.3s ease-out;
+}
+
+/* Map container styles */
+.leaflet-container {
+  border-radius: var(--radius);
+  z-index: 1;
+}
+
+.leaflet-popup-content {
+  font-family: 'Inter', sans-serif;
+  margin: 8px;
+}
+
+.leaflet-popup-content h3 {
+  color: var(--smart-primary);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+/* Toast notification styles */
+.toast-enter {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.toast-enter-active {
+  transform: translateX(0);
+  opacity: 1;
+  transition: all 0.3s ease-out;
+}
+
+.toast-exit {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.toast-exit-active {
+  transform: translateX(100%);
+  opacity: 0;
+  transition: all 0.3s ease-in;
+}
+
+/* Mobile responsiveness improvements */
+@media (max-width: 640px) {
+  .smart-card {
+    @apply mx-4;
+  }
+  
+  .chat-container {
+    height: calc(100vh - 200px);
+  }
+  
+  .map-container {
+    height: 300px;
+  }
+}
+
+/* Scrollbar styling */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: var(--muted);
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 3px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: var(--smart-accent);
+}
