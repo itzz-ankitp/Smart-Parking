@@ -41,7 +41,7 @@ export const Navigation = () => {
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <h1 className="text-xl font-bold text-[var(--smart-primary)]">
-                Smart Services Portal
+                Smart Parking
               </h1>
             </div>
             

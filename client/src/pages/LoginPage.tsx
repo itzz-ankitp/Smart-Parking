@@ -62,7 +62,7 @@ export const LoginPage = () => {
             <Settings className="h-6 w-6 text-white" />
           </div>
           <h2 className="text-3xl font-bold text-[var(--smart-primary)]">
-            Smart Services Portal
+            Smart Parking
           </h2>
           <p className="mt-2 text-sm text-gray-600">
             {isRegisterMode ? 'Create your account to get started' : 'Sign in to access your services dashboard'}

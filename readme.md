@@ -1,8 +1,8 @@
-# Smart Services Portal
+# Smart Parking
 
 ## Overview
 
-The Smart Services Portal is a modern React-based web application designed to provide users with AI assistance, interactive mapping capabilities, and seamless service management. The application features Firebase authentication, a conversational AI chatbot powered by Google's Gemini API, and interactive maps using Leaflet.js.
+The Smart Parking is a modern React-based web application designed to provide users with AI assistance, interactive mapping capabilities, and seamless service management. The application features Firebase authentication, a conversational AI chatbot powered by Google's Gemini API, and interactive maps using Leaflet.js.
 
 ## System Architecture
 

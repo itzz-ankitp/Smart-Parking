@@ -64,7 +64,7 @@ export const DashboardPage = () => {
                   {getGreeting()}
                 </h1>
                 <p className="text-gray-600 mt-1">
-                  Welcome back to your Smart Services Portal
+                  Welcome back to your Smart Parking
                 </p>
               </div>
               <div className="hidden sm:block">
