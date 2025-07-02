@@ -1,0 +1,108 @@
+Create a fully functional, modern, and sleek web application for a 'Smart Services Portal'. The application should prioritize user experience and seamless navigation across multiple distinct pages.
+
+**Overall Goal:**
+Develop a client-side React web application that provides user authentication, a conversational AI chatbot, and an interactive map, all within a multi-page structure. **Crucially, this application should NOT implement any database tracking or storage for user data beyond what is inherently managed by Firebase Authentication itself.**
+
+**Core Features:**
+
+1.  **User Authentication:**
+    * Implement secure user login and registration.
+    * Support both **Email/Password authentication** and **Google Sign-In**.
+    * Utilize **Firebase Authentication** for all authentication processes.
+
+2.  **Multi-Page Structure:** The application must consist of the following distinct pages, with clear navigation between them:
+    * **Login Page:** The initial entry point for unauthenticated users, featuring login and registration options.
+    * **Dashboard/Home Page:** The primary landing page after a user successfully authenticates. This page should provide a welcoming message and basic navigation links to other features.
+    * **Chatbot Page:** A dedicated interface for interacting with an AI chatbot.
+    * **Interactive Map Page:** A dedicated page displaying a geographical map with specific markers.
+
+3.  **Simple Chatbot:**
+    * Create a dedicated page for a conversational AI chatbot.
+    * Users should be able to type messages into an input field and send them.
+    * The chatbot's responses should be displayed in a chat-like interface.
+    * The chatbot will generate responses by calling the **Gemini API** for text generation.
+    * **Gemini API Key to use for fetch calls:** `AIzaSyAuL9WsDZ12Og7Ej-18DXfDSBgjMK5fxYU`
+        * Example fetch call structure for Gemini API:
+            ```javascript
+            let chatHistory = [];
+            chatHistory.push({ role: "user", parts: [{ text: userPrompt }] });
+            const payload = { contents: chatHistory };
+            const apiKey = "AIzaSyAuL9WsDZ12Og7Ej-18DXfDSBgjMK5fxYU"; // Use this API key
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+            const response = await fetch(apiUrl, {
+                       method: 'POST',
+                       headers: { 'Content-Type': 'application/json' },
+                       body: JSON.stringify(payload)
+                   });
+            const result = await response.json();
+            if (result.candidates && result.candidates.length > 0 &&
+                result.candidates[0].content && result.candidates[0].content.parts &&
+                result.candidates[0].content.parts.length > 0) {
+              const text = result.candidates[0].content.parts[0].text;
+              // Use the response text in the application.
+            } else {
+              // Handle cases where the response structure is unexpected or content is missing
+            }
+            ```
+
+4.  **Interactive Map:**
+    * Implement a dedicated page that displays an interactive map.
+    * Use **Leaflet.js** and its React wrapper, **React-Leaflet**, for map integration.
+    * The map's initial view should be centered on a general **Bangalore** location.
+    * Add distinct markers with informative popups for the following specific Bangalore areas:
+        * **Whitefield:** Approximately `[12.9699, 77.7500]`
+        * **KR Puram:** Approximately `[12.9904, 77.6710]`
+        * **Thippasandra:** Approximately `[12.9774, 77.5684]`
+    * The base map layer should use OpenStreetMap tiles.
+    * **Reference Leaflet Initialization (adapt for React-Leaflet):**
+        ```javascript
+        var map = L.map('map').setView([51.505, -0.09], 13); // This will be adapted for React-Leaflet
+        L.tileLayer('[https://tile.openstreetmap.org/](https://tile.openstreetmap.org/){z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="[https://www.openstreetmap.org/copyright](https://www.openstreetmap.org/copyright)">OpenStreetMap</a> contributors'
+        }).addTo(map);
+        L.marker([51.5, -0.09]).addTo(map)
+            .bindPopup('A pretty CSS popup.<br> Easily customizable.')
+            .openPopup();
+        ```
+
+**Technical Specifications:**
+
+* **Framework:** Build the application using **React** (TypeScript preferred).
+* **Authentication:** Firebase Authentication.
+    * **Firebase Configuration:** Use the following `firebaseConfig` structure. Assume environment variables are available via `import.meta.env` (e.g., `VITE_FIREBASE_API_KEY`).
+        ```javascript
+        const firebaseConfig = {
+          apiKey: import.meta.env.VITE_FIREBASE_API_KEY || "AIzaSyD3ZavWwPhPmRDc0_4wwFyX-hKQEA16NG4",
+          authDomain: `${import.meta.env.VITE_FIREBASE_PROJECT_ID || "smart-parking-dee"}.firebaseapp.com`,
+          projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID || "smart-parking-dee",
+          storageBucket: `${import.meta.env.VITE_FIREBASE_PROJECT_ID || "smart-parking-dee"}.firebasestorage.app`,
+          messagingSenderId: "930805708863",
+          appId: import.meta.env.VITE_FIREBASE_APP_ID || "1:930805708863:web:bbd399abc28ce89e7fa08a",
+          measurementId: "G-PT172D70D5"
+        };
+        ```
+* **Routing:** Use a simple React-based routing solution (e.g., `wouter` or a basic `useState` and conditional rendering for page switching) to manage the multi-page structure.
+* **Styling:** Use **Tailwind CSS** for all styling.
+    * Ensure the "Inter" font is used globally.
+    * Apply rounded corners to all appropriate UI elements.
+* **UI Components:** Leverage **shadcn/ui** components (e.g., Button, Input, Dialog, Card) for a modern and consistent look.
+* **Global State/Context:** Implement a React Context (e.g., `AuthContext`) to manage authentication state (`user`, `loading`) and a global message/notification system.
+
+**Design & Aesthetics:**
+
+* **Overall Design:** Modern, sleek, intuitive, and user-friendly.
+* **Color Palette (Hex Codes):** Use the following colors consistently throughout the application for primary, secondary, accent, and background elements:
+    * `#364958` (Dark Blue/Gray - Primary)
+    * `#55828B` (Teal Blue - Accent/Interactive)
+    * `#87BBA2` (Light Green/Blue - Secondary Accent)
+    * `#C9E4CA` (Pale Green - Background/Soft elements)
+* **Responsiveness:** The application must be fully responsive, ensuring optimal viewing and usability on all devices (mobile, tablet, desktop) and orientations. Avoid horizontal scrolling.
+
+**General Requirements:**
+
+* The entire application code (HTML, CSS, TypeScript/React) must be self-contained within a single, runnable React project structure.
+* All code should be well-commented, explaining logic, components, and integration points.
+* Implement robust error handling for API calls, authentication, and other operations, providing clear user feedback (e.g., using a global message system).
+* Ensure a smooth and intuitive user experience for all interactions.
+* Do not use `alert()` or `confirm()` for user notifications; use custom modal or toast components instead.
+* Provide placeholder content for any sections that are not fully implemented (e.g., Dashboard content beyond navigation).
