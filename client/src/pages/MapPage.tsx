@@ -48,7 +48,7 @@ export const MapPage = () => {
     },
     {
       name: 'Thippasandra',
-      coords: [12.9774, 77.5684],
+      coords: [12.9789, 77.6412],
       description: 'Mixed development with diverse services',
       services: ['Commercial Services', 'Digital Services', 'Waste Management'],
       icon: Wifi
@@ -128,7 +128,7 @@ export const MapPage = () => {
       'bangalore': [12.9716, 77.5946],
       'whitefield': [12.9699, 77.7500],
       'kr puram': [12.9904, 77.6710],
-      'thippasandra': [12.9774, 77.5684]
+      'thippasandra': [12.9789, 77.6412]
     };
 
     const coords = coordinates[locationName.toLowerCase()];
